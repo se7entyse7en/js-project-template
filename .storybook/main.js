@@ -11,6 +11,10 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app"
   ],
+  babel: (config) => {
+    config.presets.push(require.resolve("@emotion/babel-preset-css-prop"));
+    return config;
+  },
   webpackFinal: async (config) => {
     const cracoAliases = cracoConfig.plugins[0].options.aliases;
     const aliases = {};
