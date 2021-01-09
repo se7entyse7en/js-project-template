@@ -1,3 +1,6 @@
+const path = require('path');
+const cracoConfig = require('../craco.config.js');
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -7,5 +10,22 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app"
-  ]
-}
+  ],
+  webpackFinal: async (config) => {
+    const cracoAliases = cracoConfig.plugins[0].options.aliases;
+    const aliases = {};
+    Object.entries(cracoAliases).forEach(
+      ([key, val]) => (aliases[key] = path.resolve(__dirname, `.${val}`))
+    );
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          ...aliases,
+        },
+      },
+    };
+  },
+};
