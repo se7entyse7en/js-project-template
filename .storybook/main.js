@@ -16,6 +16,10 @@ module.exports = {
     return config;
   },
   webpackFinal: async (config) => {
+    config.module.rules[5].oneOf[2].options.presets = [
+      config.module.rules[5].oneOf[2].options.presets[1],
+      config.module.rules[5].oneOf[2].options.presets[0],
+    ];
     const cracoAliases = cracoConfig.plugins[0].options.aliases;
     const aliases = {};
     Object.entries(cracoAliases).forEach(
