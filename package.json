@@ -50,9 +50,9 @@
     "@storybook/react": "^6.1.11",
     "babel-loader": "8.1.0",
     "cypress": "^6.2.1",
-    "webpack": "4.44.2"
+    "webpack": "5.94.0"
   },
   "resolutions": {
-    "webpack": "4.44.2"
+    "webpack": "5.94.0"
   }
 }
